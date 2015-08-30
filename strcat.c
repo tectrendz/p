@@ -16,7 +16,8 @@ my_strcat(char *dest, const char *src)
      
    while(*src) {
 //http://stackoverflow.com/questions/3110140/take-care-about-precedence-of-and-in-c-c-and-any-keystroke-when-program
-       tmp = *src++; 
+/* Note *src++ means: First copy value of *src to tmp and then increment the pointer.*/
+    	   tmp = *src++; 
        printf("tmp is %c\n", tmp);
        *dest++ = tmp;
    }  
