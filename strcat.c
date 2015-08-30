@@ -5,12 +5,22 @@ char *
 my_strcat(char *dest, const char *src)
 {
     char *rdest = dest;
-
-    while (*dest)
+    char tmp;
+    while (*dest) {
       dest++;
-    while (*dest++ = *src++)
+    }
+   /*    
+    while (*dest++ = *src++) {
       ;
-    return rdest;
+    }*/
+     
+   while(*src) {
+//http://stackoverflow.com/questions/3110140/take-care-about-precedence-of-and-in-c-c-and-any-keystroke-when-program
+       tmp = *src++; 
+       printf("tmp is %c\n", tmp);
+       *dest++ = tmp;
+   }  
+   return rdest;
 }
 /*
    Destination string should from an array
@@ -60,12 +70,37 @@ and so on. If you changed pmessage to point to amessage:
 pmessage = amessage;
 then it can be used everywhere amessage can be used.
 */
+char *m_strcat(char *dst, char *src)
+{
+   char *ret = dst;
+   while(*dst++); 
+   while(*src) {
+      *dst++ = *src++; 
+   }
+   return ret; 
+}
 
-void main ()
+int m_strlen (char *str)
+{
+   int len = 0;	
+   while(*str++) {
+       len++;
+   }	   
+   return len;
+}
+void remove_space(char *str)
+{
+
+
+}
+int main ()
 {
     char *src;
     char dest[200] = "Original Message";
     src = (char *)malloc(sizeof(char)*20);
-    src = " Message to append";
+    src = "Message to append";
     printf("Str is %s\n", my_strcat(dest, src));
+    //printf("Strlen of: %s is %d\n", m_strcat(dest, src), m_strlen(m_strcat(dest, src)));
+    //printf("Strlen of: %s is %d\n", src, m_strlen(src));
+    return 1;
 }
