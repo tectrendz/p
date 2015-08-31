@@ -14,6 +14,7 @@ void remove_space(char *str)
    str[j] = '\0';
 
 }
+
 void remove_space1(char *str)
 {
    int i = 0, j = 0;
