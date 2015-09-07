@@ -94,6 +94,32 @@ void remove_space(char *str)
 
 
 }
+int mystrcmp (char *str1, char *str2) 
+{
+     for (;*str1 == *str2; str1++, str2++) {
+          if (*str1 == '\0') {
+              printf("Match");		  
+	      return 0;
+	  }
+     }
+     return (*str1>*str2?1:-1);
+}	
+int mystrstr (char *start1, char *start2) 
+{
+     char *str1 = start1;
+     char *str2 = start2;
+
+     for (;*start1 != '\0'; start1++) {       
+         for (str1 = start1, str2 = start2; (*str1 == *str2) || *str2 == '\0' ; str1++, str2++) {
+             if (*str2 == '\0') {
+                 printf("Match");		  
+	         return 0;
+	     }
+         }
+     }	 
+     return (*str1>*str2?1:-1);
+}
+
 int main ()
 {
     char *src;
@@ -101,7 +127,10 @@ int main ()
     src = (char *)malloc(sizeof(char)*20);
     src = "Message to append";
     printf("Str is %s\n", my_strcat(dest, src));
-    //printf("Strlen of: %s is %d\n", m_strcat(dest, src), m_strlen(m_strcat(dest, src)));
-    //printf("Strlen of: %s is %d\n", src, m_strlen(src));
+    printf("Strlen of: %s is %d\n", m_strcat(dest, src), m_strlen(m_strcat(dest, src)));
+    printf("Strlen of: %s is %d\n", src, m_strlen(src));
+    printf("Strcmp %d \n", mystrcmp("abc","abcd"));
+    printf("Strstr %d \n", mystrstr("abce","abcd"));
+
     return 1;
 }
