@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 int count1s(int num)
 {
     int count = 0;	
@@ -88,12 +89,96 @@ unsigned int reverseBitsWithTemp(unsigned int num)
 	      
     return reverse_num;
 }
+
+void foo (char* a, char **b, char **c, char ***d) {
+    printf ("foo: a=%ld b=%ld c=%ld d=%ld\n",sizeof(a),sizeof(b),sizeof(c),sizeof(d));
+    printf ("foo: a=%p b=%p c=%p d=%p\n",a,b,c,d);
+    printf ("foo: a+1=%p b+1=%p c+1=%p d+1=%p\n",a+1,b+1,c+1,d+1);
+    printf ("diff: a+1=%ld b+1=%ld c+1=%ld d+1=%ld\n",((char *)(a+1) - (char *)a),
+		     ((char *)(b+1) - (char *)b), ((char *)(c+1) - (char *)c),
+		     ((char *)(d+1) - (char *)d));
+    
+}
+void arr_size(void) {
+    char a[10]; //sizeof 10, a++ 1byte
+    char b[10][10]; // sizeof 100, b++ 10bytes
+    char *c[10]; // sizeof 80, c++ 8 bytes
+    char *d[10][10]; // sizeof 800, d++ 80 bytes
+    printf("arr size \n "); 
+    printf (" a=%ld b=%ld c=%ld d=%ld\n",sizeof(a),sizeof(b),sizeof(c),sizeof(d));
+    printf (" a=%p b=%p c=%p d=%p\n",a,b,c,d);
+    printf (" a+1=%p b+1=%p c+1=%p d+1=%p\n",a+1,b+1,c+1,d+1);
+    printf ("diff: a+1=%ld b+1=%ld c+1=%ld d+1=%ld\n",((char *)(a+1) - (char *)a),
+		     ((char *)(b+1) - (char *)b), ((char *)(c+1) - (char *)c),
+		     ((char *)(d+1) - (char *)d));
+    printf("FOO Called \n");
+    foo ((char *)a, (char **)b, (char **)c, (char ***)d);
+}
+/*x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+ PROBLEM Dynamic alloc 2-D array
+ SOLUTION
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x*/
+
+void dynamic_alloc_array (int r, int c){
+    char **arr = calloc (1,sizeof (int*) * r);
+    for (int i = 0; i < c ; i++)
+        arr[i] = calloc (1, c * sizeof (int));
+    
+    int d = 0;
+    for (int i = 0; i < r ; i++)
+        for (int j = 0 ; j < c; j++)
+            arr[i][j] = d++;
+    
+    
+}
+
+
+/*x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+ PROBLEM increment/decrement
+ SOLUTION 	eq="j=i++ + i++" 	i=3, j=3
+ eq="j=i + i++" 		i=2, j=2
+ eq="j=++i + i++" 	i=3, j=4
+ eq="j=++i + ++i" 	i=3, j=5
+ eq="j=--i + i++" 	i=1, j=1
+ x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x*/
+void
+test_operator (void) {
+    int i = 0;
+    int j = 0;
+    
+    i=1;
+    j=i++ + i++;
+    printf ("j=i++ + i++; i=%d, j=%d\n",i,j);
+    i = 1; 
+    j=i + i++;
+    printf ("j=i + i++ i=%d, j=%d\n",i,j);
+    i=1;
+    j= ++i + i++;
+    printf ("j= ++i + i++; i=%d, j=%d\n",i,j);
+    i=1;
+    j= ++i + ++i;
+    printf ("j= ++i + ++i; i=%d, j=%d\n",i,j);
+    i=1;
+    j= --i + ++i;
+    printf ("j= --i + ++i; i=%d, j=%d\n",i,j);
+    //output: i=3,j=3
+    
+}
  
 /* Driver function to test above function */
 int main()
 {
     unsigned int x = 0x80000000;
+    char ch, *chp, **chpp, ***chppp, ****chpppp;
+     
     printf("Size of int is %ld\n", sizeof(x)); 
     printf("%x\n", reverseBits(x));
+    chp = &ch;
+    chpp = &chp;
+    chppp = &chpp;
+    chpppp = &chppp;
+    foo (chp, chpp, chpp, chppp);
+    arr_size();
+    test_operator();
     return 1;
 }
