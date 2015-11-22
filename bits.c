@@ -15,11 +15,15 @@ int count1s(int num)
 //http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
 int count1s1(int num)
 {
-    int count = 0;	
+    int count = 0;
+    printf("%s Num in decimal is %d and in hex is %x \n", __FUNCTION__, num, num); 
     while(num) {
-       num  &= (num-1); 	    
+       printf(" num %b and num-1 %b ",num, num -1); 
+       num  &= (num-1);
+       printf("  after operation num %b ",num); 
        count++;
     }
+    printf("\n"); 
     return count;
 }	
 
@@ -28,10 +32,13 @@ int count1s1(int num)
 int count0s1(int num)
 {
     int count = 0;	
+    printf("%s Num is %d \n", __FUNCTION__, num); 
     while(num) {
        num  &= ~(num-1); 	    
+       printf("%x ",num); 
        count++;
     }
+    printf("\n"); 
     return count;
 }	
 
@@ -48,13 +55,13 @@ int turnOffK(int n, int k)
 }
                        
 
-int main1()
+int main()
 {
     int i = 0xf;
     printf("Bit Operation \n");
     printf("Number of ones in 0x24 is %d \n", count1s(0x24));
     printf("Number of ones in 0x24 is %d \n", count1s1(0x24));
-    printf("Number of zeros in 0x24 is %d \n", count0s1(0x24));
+    //printf("Number of zeros in 0x24 is %d \n", count0s1(0x24));
     printf("Number %x ", ~(i)); 
     return 1;
 }
@@ -166,7 +173,7 @@ test_operator (void) {
 }
  
 /* Driver function to test above function */
-int main()
+int main1()
 {
     unsigned int x = 0x80000000;
     char ch, *chp, **chpp, ***chppp, ****chpppp;

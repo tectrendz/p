@@ -1,2 +1,6 @@
 
 *.out
+
+*.plist
+
+a.out.dSYM/Contents/Info.plist
