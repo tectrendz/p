@@ -32,14 +32,7 @@ int count1s1(int num)
 int count0s1(int num)
 {
     int count = 0;	
-    printf("%s Num is %d \n", __FUNCTION__, num); 
-    while(num) {
-       num  &= ~(num-1); 	    
-       printf("%x ",num); 
-       count++;
-    }
-    printf("\n"); 
-    return count;
+    return  32 - count1s1(num);
 }	
 
 // Returns a number that has all bits same as n
@@ -61,7 +54,7 @@ int main()
     printf("Bit Operation \n");
     printf("Number of ones in 0x24 is %d \n", count1s(0x24));
     printf("Number of ones in 0x24 is %d \n", count1s1(0x24));
-    //printf("Number of zeros in 0x24 is %d \n", count0s1(0x24));
+    printf("Number of zeros in 0x24 is %d \n", count0s1(0x24));
     printf("Number %x ", ~(i)); 
     return 1;
 }
