@@ -11,7 +11,7 @@ void remove_space(char *str)
       }
       j++; 
    }
-   str[j] = '\0';
+   str[i] = '\0';
 
 }
 
@@ -26,7 +26,7 @@ void remove_space1(char *str)
           str++;
       }
    }
-   str[j] = '\0';
+   *strW++ = '\0';
 
 }
 int main ()

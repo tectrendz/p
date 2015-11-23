@@ -48,14 +48,14 @@ int turnOffK(int n, int k)
 }
                        
 
-int main()
+int main1()
 {
     int i = 0xf;
     printf("Bit Operation \n");
     printf("Number of ones in 0x24 is %d \n", count1s(0x24));
     printf("Number of ones in 0x24 is %d \n", count1s1(0x24));
     printf("Number of zeros in 0x24 is %d \n", count0s1(0x24));
-    printf("Number %x ", ~(i)); 
+    printf("Number  %x and ~number is %x ",i, ~(i)); 
     return 1;
 }
 
@@ -99,9 +99,17 @@ void foo (char* a, char **b, char **c, char ***d) {
 		     ((char *)(d+1) - (char *)d));
     
 }
+/*
+takes whatever ip points at, adds 1, and assigns the result to y, while
+*ip += 1
+increments what ip points to, as do
+++*ip
+and
+(*ip)++
+*/
 void arr_size(void) {
     char a[10]; //sizeof 10, a++ 1byte
-    char b[10][10]; // sizeof 100, b++ 10bytes
+    char b[10][12]; // sizeof 100, b++ 10bytes
     char *c[10]; // sizeof 80, c++ 8 bytes
     char *d[10][10]; // sizeof 800, d++ 80 bytes
     printf("arr size \n "); 
@@ -166,9 +174,9 @@ test_operator (void) {
 }
  
 /* Driver function to test above function */
-int main1()
+int main()
 {
-    unsigned int x = 0x80000000;
+    unsigned int x = 0xf0000000;
     char ch, *chp, **chpp, ***chppp, ****chpppp;
      
     printf("Size of int is %ld\n", sizeof(x)); 
