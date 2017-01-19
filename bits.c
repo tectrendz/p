@@ -109,7 +109,7 @@ and
 */
 void arr_size(void) {
     char a[10]; //sizeof 10, a++ 1byte
-    char b[10][12]; // sizeof 100, b++ 10bytes
+    char b[10][12]; // sizeof 120, b++ 10bytes
     char *c[10]; // sizeof 80, c++ 8 bytes
     char *d[10][10]; // sizeof 800, d++ 80 bytes
     printf("arr size \n "); 
